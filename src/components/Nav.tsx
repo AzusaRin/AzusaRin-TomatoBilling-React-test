@@ -1,31 +1,37 @@
 import styled from 'styled-components';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import * as React from 'react';
 import Icon from './Icon';
 
 
 const NavWrapper = styled.nav`
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
-
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  max-width: 470px;
+  
   > ul {
     display: flex;
     justify-content: center;
     align-items: center;
-
+    height: 60px;
+    
     > li {
       text-align: center;
       flex-grow: 1;
 
       > a {
-        padding: 16px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        font-size: 12px;
 
         .icon {
-          width: 24px;
-          height: 24px;
+          width: 32px;
+          height: 32px;
+          padding: 2px;
         }
       }
     }
@@ -37,19 +43,40 @@ const Nav = () => {
     <NavWrapper>
       <ul>
         <li>
-          <Link to="/billing">
+          <NavLink
+            style={({ isActive }) => {
+              return {
+                color: isActive ? "rgb(113,201,206)" : "",
+                fill:isActive ? "rgb(113,201,206)" : ""
+              };
+            }}
+            to="/billing">
             <Icon name="billing"/>
-            记账</Link>
+            记一笔</NavLink>
         </li>
         <li>
-          <Link to="/statistics">
+          <NavLink
+            style={({ isActive }) => {
+              return {
+                color: isActive ? "rgb(113,201,206)" : "",
+                fill:isActive ? "rgb(113,201,206)" : ""
+              };
+            }}
+            to="/statistics" >
             <Icon name="statistics"/>
-            统计</Link>
+            账本</NavLink>
         </li>
         <li>
-          <Link to="/myChart">
+          <NavLink
+            style={({ isActive }) => {
+              return {
+                color: isActive ? "rgb(113,201,206)" : "",
+                fill:isActive ? "rgb(113,201,206)" : ""
+              };
+            }}
+            to="/myChart">
             <Icon name="chart"/>
-            图表</Link>
+            图表</NavLink>
         </li>
       </ul>
     </NavWrapper>
