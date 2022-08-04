@@ -34,15 +34,15 @@ const Nav = () => {
       <ul>
         <li>
           <Icon name="billing"/>
-          <Link to="billing">记账</Link>
+          <Link to="/billing">记账</Link>
         </li>
         <li>
           <Icon name="statistics"/>
-          <Link to="statistics">统计</Link>
+          <Link to="/statistics">统计</Link>
         </li>
         <li>
           <Icon name="chart"/>
-          <Link to="myChart">图表</Link>
+          <Link to="/myChart">图表</Link>
         </li>
       </ul>
     </NavWrapper>

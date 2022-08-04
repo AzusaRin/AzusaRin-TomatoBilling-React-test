@@ -1,24 +1,13 @@
 import * as React from 'react';
 import {Routes, Route} from 'react-router-dom';
-import styled from 'styled-components';
-import Nav from './components/Nav';
+import Layout from 'components/Layout';
 
 
-const Wrapper = styled.div`
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-`;
-const Main = styled.div`
-  flex-grow: 1;
-  overflow: auto;
-`;
+
 
 
 function App() {
   return (
-    <Wrapper>
-      <Main>
         <Routes>
           <Route path="/" element={<Billing/>}/>
           <Route path="*" element={<NotFound/>}/>
@@ -26,23 +15,22 @@ function App() {
           <Route path="myChart" element={<MyChart/>}/>
           <Route path="statistics" element={<Statistics/>}/>
         </Routes>
-      </Main>
-      <Nav/>
-    </Wrapper>
   );
 }
 
 function Billing() {
   return (
-    <div>
-     记账
-      </div>
+    <Layout>
+    <div>记账</div>
+    </Layout>
   );
 }
 
 function MyChart() {
   return (
-    <div>图表</div>
+    <Layout>
+      <div>图表</div>
+    </Layout>
   );
 }
 
@@ -55,9 +43,9 @@ function NotFound() {
 
 function Statistics() {
   return (
-    <div>
-      统计
-    </div>
+    <Layout>
+      <div>统计</div>
+    </Layout>
   );
 }
 
