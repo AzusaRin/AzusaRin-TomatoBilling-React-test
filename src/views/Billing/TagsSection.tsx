@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React from 'react';
+import React, {useState} from 'react';
 import Icon from 'components/Icon';
 
 const Wrapper = styled.section`
@@ -10,14 +10,12 @@ const Wrapper = styled.section`
   display: flex;
   flex-direction: column-reverse;
 
-  > .current {
-    display: flex;
-    flex-wrap: wrap;
+  > ul {
     overflow: auto;
-
-    > ul {
-      overflow: auto;
-    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 
     > li {
       display: flex;
@@ -25,6 +23,7 @@ const Wrapper = styled.section`
       justify-content: center;
       align-items: center;
       flex-grow: 1;
+
 
       > .svgWrapper {
         display: flex;
@@ -74,40 +73,65 @@ const Wrapper = styled.section`
     }
   }
 
-  .new {
-    display: flex;
-    justify-content: space-between;
+}
 
-    button {
-      box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
-      margin-top: 10px;
-      background-color: white;
-      padding: 8px 20px 8px 8px;
-      color: #333333;
-      border-radius: 8px;
-      border: none;
+.new {
+  display: flex;
+  justify-content: space-between;
 
-      &:active {
-        background-color: rgb(234, 236, 239);
-      }
+  button {
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+    margin-top: 10px;
+    background-color: white;
+    padding: 8px 20px 8px 8px;
+    color: #333333;
+    border-radius: 8px;
+    border: none;
+
+    &:active {
+      background-color: rgb(234, 236, 239);
     }
+  }
 
-    .icon {
-      height: 22px;
-      width: 22px;
-      fill: currentColor;
-      overflow: hidden;
-      vertical-align: middle;
-      padding-left: 2px;
-      padding-bottom: 4px;
-    }
+  .icon {
+    height: 22px;
+    width: 22px;
+    fill: currentColor;
+    overflow: hidden;
+    vertical-align: middle;
+    padding-left: 2px;
+    padding-bottom: 4px;
   }
 `;
 const TagsSection: React.FunctionComponent = () => {
+  const [tags, setTags] = useState<string[]>(['衣', '食', '住', '行']);
+  const [selectedTag, setSelectedTag] = useState<string[]>([]);
+  const onAddTag = () => {
+    const newTagName = window.prompt('请输入标签名称');
+    if (newTagName === null) {
+      window.alert('标签名不能为空');
+      return;
+    } else if (newTagName.length >= 10) {
+      window.alert('标签名不可超过10字符');
+      return;
+    } else {
+      setTags([...tags, newTagName]);
+    }
+  };
+  const onToggleTag = (tag: string) => {
+    if (selectedTag.includes(tag)) {
+     return   setSelectedTag(selectedTag.filter(t => t !== tag));
+    } else {
+    return   setSelectedTag([...selectedTag, tag]);
+    }
+  };
+  const className = (tag: string) => {
+    return selectedTag.includes(tag) ? 'selected' : '';
+  };
   return (
     <Wrapper>
       <div className="new">
-        <button>
+        <button onClick={onAddTag}>
           <svg className="icon">
             <Icon name="createTag"/>
           </svg>
@@ -120,13 +144,15 @@ const TagsSection: React.FunctionComponent = () => {
           管理标签
         </button>
       </div>
-      <div>
-        <ul className="current">
-          <li>
-            <span>ssss</span>
+      <ul>
+        {tags.map(tag =>
+          <li key={tag}
+              onClick={() => {onToggleTag(tag);}}
+              className={className(tag)}
+          >{tag}
           </li>
-        </ul>
-      </div>
+        )}
+      </ul>
     </Wrapper>
   );
 };

@@ -9,7 +9,7 @@ const Wrapper = styled.section`
     position: fixed;
     top: 0;
     z-index: 1;
-    background-color: #71C9CE;
+    background-color: rgb(253,167,168);
     display: flex;
     font-size: 18px;
 

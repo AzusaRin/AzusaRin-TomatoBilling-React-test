@@ -46,8 +46,8 @@ const Nav = () => {
           <NavLink
             style={({ isActive }) => {
               return {
-                color: isActive ? "rgb(113,201,206)" : "",
-                fill:isActive ? "rgb(113,201,206)" : ""
+                color: isActive ? "rgb(253,167,168)" : "",
+                fill:isActive ? "rgb(253,167,168)" : ""
               };
             }}
             to="/billing">
@@ -58,8 +58,8 @@ const Nav = () => {
           <NavLink
             style={({ isActive }) => {
               return {
-                color: isActive ? "rgb(113,201,206)" : "",
-                fill:isActive ? "rgb(113,201,206)" : ""
+                color: isActive ? "rgb(253,167,168)" : "",
+                fill:isActive ? "rgb(253,167,168)" : ""
               };
             }}
             to="/statistics" >
@@ -70,8 +70,8 @@ const Nav = () => {
           <NavLink
             style={({ isActive }) => {
               return {
-                color: isActive ? "rgb(113,201,206)" : "",
-                fill:isActive ? "rgb(113,201,206)" : ""
+                color: isActive ? "rgb(253,167,168)" : "",
+                fill:isActive ? "rgb(253,167,168)" : ""
               };
             }}
             to="/myChart">
