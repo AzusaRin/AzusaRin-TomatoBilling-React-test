@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React from 'react';
+import React, {useState} from 'react';
 
 const Wrapper = styled.section`
   > ul {
@@ -9,7 +9,7 @@ const Wrapper = styled.section`
     position: fixed;
     top: 0;
     z-index: 1;
-    background-color: rgb(253,167,168);
+    background-color: rgb(253, 167, 168);
     display: flex;
     font-size: 18px;
 
@@ -43,12 +43,22 @@ const Wrapper = styled.section`
 `;
 
 const TypeSection: React.FunctionComponent = () => {
+  const typeMap = {'-':'支出','+':'收入'}
+  type X = keyof typeof typeMap
+  const [type, setType] = useState('-');
+  const [typeList] = useState<X[]>(['-', '+']);
+
+
+
   return (
     <Wrapper>
       <ul>
         <li className="null"></li>
-        <li className="type">支出</li>
-        <li className="type">收入</li>
+        {typeList.map(t =>
+          <li className={`type ${type===t?'selected':''}`}
+              onClick={() => setType(t)}
+          >{typeMap[t]}</li>
+        )}
         <li className="null"></li>
       </ul>
     </Wrapper>
