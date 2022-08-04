@@ -1,6 +1,9 @@
 import * as React from 'react';
 import {Routes, Route} from 'react-router-dom';
-import Layout from 'components/Layout';
+import Billing from 'views/Billing';
+import MyChart from 'views/MyChart';
+import Statistics from 'views/Statistics';
+import NotFound from 'views/NotFound';
 
 
 
@@ -18,35 +21,5 @@ function App() {
   );
 }
 
-function Billing() {
-  return (
-    <Layout>
-    <div>记账</div>
-    </Layout>
-  );
-}
-
-function MyChart() {
-  return (
-    <Layout>
-      <div>图表</div>
-    </Layout>
-  );
-}
-
-function NotFound() {
-  return (
-    <div>
-      404
-    </div>);
-}
-
-function Statistics() {
-  return (
-    <Layout>
-      <div>统计</div>
-    </Layout>
-  );
-}
 
 export default App;
