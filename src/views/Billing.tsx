@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import layout from '../components/Layout';
 import {TagsSection} from './Billing/TagsSection';
-import {NotesSection} from './Billing/NotesSection';
+import {NoteSection} from './Billing/NoteSection';
 import {NumberPadSection} from './Billing/NumberPadSection';
 import {TypeSection} from './Billing/TypeSection';
 
@@ -17,7 +17,7 @@ function Billing() {
     <MyLayout>
       <TypeSection/>
       <TagsSection/>
-      <NotesSection/>
+      <NoteSection/>
       <NumberPadSection/>
     </MyLayout>
   );

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React from 'react';
+import React, {useRef, useState} from 'react';
 
 const Wrapper = styled.section`
   label {
@@ -24,15 +24,26 @@ const Wrapper = styled.section`
   }
 `;
 
-const NotesSection: React.FunctionComponent = () => {
+const NoteSection: React.FunctionComponent = () => {
+  const [note, setNote] = useState<string>('');
+  const inputEl = useRef<HTMLInputElement>(null);
+  const onBlur = () => {
+    if (inputEl.current !== null) {
+      setNote(inputEl.current.value);
+    }
+  };
   return (
     <Wrapper>
       <label className="notes">
         <span className="noteName">备注</span>
-        <input type="text" placeholder="placeHolder"/>
+        <input type="text" placeholder="写点备注吧~"
+               defaultValue={note}
+               ref={inputEl}
+               onBlur={onBlur}
+        />
       </label>
     </Wrapper>
   );
 };
 
-export {NotesSection};
+export {NoteSection};
