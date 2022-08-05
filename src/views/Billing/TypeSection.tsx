@@ -55,7 +55,7 @@ const TypeSection: React.FunctionComponent = () => {
       <ul>
         <li className="null"></li>
         {typeList.map(t =>
-          <li className={`type ${type===t?'selected':''}`}
+          <li key={t} className={`type ${type===t?'selected':''}`}
               onClick={() => setType(t)}
           >{typeMap[t]}</li>
         )}
