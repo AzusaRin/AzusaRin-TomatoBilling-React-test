@@ -8,6 +8,8 @@ import {NumberPadSection} from './Billing/NumberPadSection';
 import {TypeSection} from './Billing/TypeSection';
 
 
+
+
 const MyLayout = styled(layout)`
   display: flex;
   flex-direction: column;
@@ -22,42 +24,29 @@ function Billing() {
     note: '',
     amount: 0
   });
+  const Change = (obj:Partial<typeof value>) =>{
+    setValue({
+      ...value,
+      ...obj
+    })
+  }
   return (
     <MyLayout>
-      {value.type}
-      <br/>
-      {value.tag}
-      <br/>
-      {value.note}
-      <br/>
-      {value.amount}
       <TypeSection
         selected={value.type}
-        onChange={(type) => setValue({
-          ...value,
-          type: type
-        })}
+        onChange={type => Change({type})}
       />
       <TagsSection
         selected={value.tag}
-        onChange={(tag) => setValue({
-          ...value,
-          tag: tag
-        })}
+        onChange={tag => Change({tag})}
       />
       <NoteSection
         selected={value.note}
-        onChange={(note) => setValue({
-          ...value,
-          note: note
-        })}
+        onChange={note => Change({note})}
       />
       <NumberPadSection
         selected={value.amount}
-        onChange={(amount) => setValue({
-          ...value,
-          amount: amount
-        })}
+        onChange={amount => Change({amount})}
       />
     </MyLayout>
   );
