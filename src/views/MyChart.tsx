@@ -1,6 +1,7 @@
 import Layout from '../components/Layout';
 import * as React from 'react';
 
+
 function MyChart() {
   return (
     <Layout>

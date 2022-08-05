@@ -1,20 +1,8 @@
 import Nav from './Nav';
 import * as React from 'react';
-import styled from 'styled-components';
-
-const Wrapper = styled.div`
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 60px;
-  padding-top: 55px;
-`;
-const Main = styled.div`
-  flex-grow: 1;
-  overflow: auto;
+import {Main, Wrapper} from './LayoutStyle';
 
 
-`;
 
 const Layout = (props: any) => {
   return (

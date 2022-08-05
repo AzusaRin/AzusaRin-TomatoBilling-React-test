@@ -8,8 +8,6 @@ import {NumberPadSection} from './Billing/NumberPadSection';
 import {TypeSection} from './Billing/TypeSection';
 
 
-
-
 const MyLayout = styled(layout)`
   display: flex;
   flex-direction: column;
@@ -24,12 +22,12 @@ function Billing() {
     note: '',
     amount: 0
   });
-  const Change = (obj:Partial<typeof value>) =>{
+  const Change = (obj: Partial<typeof value>) => {
     setValue({
       ...value,
       ...obj
-    })
-  }
+    });
+  };
   return (
     <MyLayout>
       <TypeSection
