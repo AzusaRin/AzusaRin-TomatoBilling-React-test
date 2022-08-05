@@ -24,16 +24,41 @@ function Billing() {
   });
   return (
     <MyLayout>
-      <TypeSection/>
+      {value.type}
+      <br/>
+      {value.tag}
+      <br/>
+      {value.note}
+      <br/>
+      {value.amount}
+      <TypeSection
+        selected={value.type}
+        onChange={(type) => setValue({
+          ...value,
+          type: type
+        })}
+      />
       <TagsSection
-        selectedValue={value.tag}
+        selected={value.tag}
         onChange={(tag) => setValue({
           ...value,
           tag: tag
         })}
       />
-      <NoteSection/>
-      <NumberPadSection/>
+      <NoteSection
+        selected={value.note}
+        onChange={(note) => setValue({
+          ...value,
+          note: note
+        })}
+      />
+      <NumberPadSection
+        selected={value.amount}
+        onChange={(amount) => setValue({
+          ...value,
+          amount: amount
+        })}
+      />
     </MyLayout>
   );
 }

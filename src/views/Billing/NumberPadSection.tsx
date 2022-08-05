@@ -2,16 +2,24 @@ import React, {useState} from 'react';
 import {Wrapper} from './NumberPadSection/Wrapper';
 import {inputToOutput} from './NumberPadSection/inputToOutput';
 
+type Props = {
+  selected: number
+  onChange: (selected: number) => void
+}
+const NumberPadSection: React.FunctionComponent<Props> = (props) => {
+  const [output, setOutput] = useState(props.selected.toString());
 
-const NumberPadSection: React.FunctionComponent = () => {
-  const [output, setOutput] = useState('0');
   const _setOutput = (output: string) => {
+    let newOutput;
     if (output.length >= 16) {
-      output = output.slice(0, 16);
+      newOutput = output.slice(0, 16).replace(/^(-)*(\d+)\.(\d\d).*$/, '$1$2.$3');
     } else if (output.length === 0) {
-      output = '0';
+      newOutput = '0';
+    } else {
+      newOutput = output.replace(/^(-)*(\d+)\.(\d\d).*$/, '$1$2.$3');
     }
-    setOutput(output.replace(/^(-)*(\d+)\.(\d\d).*$/, '$1$2.$3'));
+    setOutput(newOutput);
+    props.onChange(parseFloat(newOutput));
   };
   const onClickButtonWrapper = (event: React.MouseEvent) => {
     const innerText = (event.target as HTMLButtonElement).textContent;
@@ -23,6 +31,7 @@ const NumberPadSection: React.FunctionComponent = () => {
     }
     if ('0123456789.'.split('').concat(['删除', '清空']).includes(innerText)) {
       _setOutput(inputToOutput(innerText, output));
+
     }
 
   };

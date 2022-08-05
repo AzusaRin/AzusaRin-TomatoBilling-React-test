@@ -41,22 +41,22 @@ const Wrapper = styled.section`
     }
   }
 `;
-
-const TypeSection: React.FunctionComponent = () => {
-  const typeMap = {'-':'支出','+':'收入'}
-  type X = keyof typeof typeMap
-  const [type, setType] = useState('-');
-  const [typeList] = useState<X[]>(['-', '+']);
-
-
-
-  return (
+type Props = {
+  selected: '-' | '+'
+  onChange: (selected: '-' | '+') => void
+}
+const TypeSection: React.FunctionComponent<Props> = (props) => {
+  const typeMap = {'-': '支出', '+': '收入'};
+  type TypeList = keyof typeof typeMap
+  const [typeList] = useState<TypeList[]>(['-', '+']);
+  const type = props.selected
+    return(
     <Wrapper>
       <ul>
         <li className="null"></li>
         {typeList.map(t =>
-          <li key={t} className={`type ${type===t?'selected':''}`}
-              onClick={() => setType(t)}
+          <li key={t} className={`type ${type === t ? 'selected' : ''}`}
+              onClick={() => props.onChange(t)}
           >{typeMap[t]}</li>
         )}
         <li className="null"></li>

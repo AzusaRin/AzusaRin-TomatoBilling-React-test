@@ -1,4 +1,4 @@
-const inputToOutput = (innerText: string, output='0') => {
+const inputToOutput = (innerText: string, output = '0') => {
   switch (innerText) {
     case'0':
     case'1':

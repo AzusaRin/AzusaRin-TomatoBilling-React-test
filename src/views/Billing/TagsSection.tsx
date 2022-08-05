@@ -105,12 +105,12 @@ const Wrapper = styled.section`
   }
 `;
 type Props = {
-  selectedValue: string[]
+  selected: string[]
   onChange: (selected: string[]) => void
 }
 const TagsSection: React.FunctionComponent<Props> = (props) => {
   const [tags, setTags] = useState<string[]>(['衣', '食', '住', '行']);
-  const selectedTag = props.selectedValue;
+  const selectedTag = props.selected;
   const onAddTag = () => {
     const newTagName = window.prompt('请输入标签名称');
     if (newTagName === null) {
