@@ -47,6 +47,7 @@ const Wrapper = styled.section`
       }
 
       &.selected {
+        color: red;
         > .svgWrapper {
           background-color: #71C9CE;
           @-webkit-keyframes shake {
@@ -103,9 +104,13 @@ const Wrapper = styled.section`
     padding-bottom: 4px;
   }
 `;
-const TagsSection: React.FunctionComponent = () => {
+type Props = {
+  selectedValue: string[]
+  onChange: (selected: string[]) => void
+}
+const TagsSection: React.FunctionComponent<Props> = (props) => {
   const [tags, setTags] = useState<string[]>(['衣', '食', '住', '行']);
-  const [selectedTag, setSelectedTag] = useState<string[]>([]);
+  const selectedTag = props.selectedValue;
   const onAddTag = () => {
     const newTagName = window.prompt('请输入标签名称');
     if (newTagName === null) {
@@ -120,9 +125,12 @@ const TagsSection: React.FunctionComponent = () => {
   };
   const onToggleTag = (tag: string) => {
     if (selectedTag.includes(tag)) {
-     return   setSelectedTag(selectedTag.filter(t => t !== tag));
+      props.onChange(selectedTag.filter(t => t !== tag));
+    } else if (selectedTag.length >= 1) {
+      selectedTag.splice(0, 1);
+      props.onChange([...selectedTag, tag]);
     } else {
-    return   setSelectedTag([...selectedTag, tag]);
+      props.onChange([...selectedTag, tag]);
     }
   };
   const className = (tag: string) => {
