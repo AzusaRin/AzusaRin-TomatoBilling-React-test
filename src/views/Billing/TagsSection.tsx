@@ -1,6 +1,8 @@
 import styled from 'styled-components';
-import React, {useState} from 'react';
+import React from 'react';
 import Icon from 'components/Icon';
+import {useTags} from '../../useTags';
+
 
 const Wrapper = styled.section`
   flex-grow: 1;
@@ -48,6 +50,7 @@ const Wrapper = styled.section`
 
       &.selected {
         color: red;
+
         > .svgWrapper {
           background-color: #71C9CE;
           @-webkit-keyframes shake {
@@ -109,8 +112,8 @@ type Props = {
   onChange: (selected: string[]) => void
 }
 const TagsSection: React.FunctionComponent<Props> = (props) => {
-  const [tags, setTags] = useState<string[]>(['衣', '食', '住', '行']);
   const selectedTag = props.selected;
+  const {tags, setTags} = useTags();
   const onAddTag = () => {
     const newTagName = window.prompt('请输入标签名称');
     if (newTagName === null) {
