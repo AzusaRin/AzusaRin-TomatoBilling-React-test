@@ -2,19 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Label = styled.label`
-
   display: flex;
   align-items: center;
   font-size: 14px;
   padding-left: 16px;
   background-color: white;
+  height: 44px;
 
   .noteName {
     padding-right: 16px;
   }
 
   input {
-    height: 3.5rem;
     flex-grow: 1;
     background-color: transparent;
     border: none;

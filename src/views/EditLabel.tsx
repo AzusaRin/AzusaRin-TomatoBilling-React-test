@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import {Button} from '../components/Button';
 import {LabelWrapper, Main} from '../components/LayoutStyle';
 import Nav from '../components/Nav';
+import {Input} from '../components/FormItem';
 
 const Header = styled.div`
   display: flex;
@@ -15,7 +16,11 @@ const Header = styled.div`
   line-height: 20px;
   padding: 14px;
 `;
-
+const InputWrapper = styled.div`
+background: white;
+  padding: 0 16px;
+  margin-top: 16px;
+`
 
 type Params = {
   id: string
@@ -32,14 +37,9 @@ const EditLabel: React.FunctionComponent = () => {
           <span>编辑标签</span>
           <Icon/>
         </Header>
-        <div>
-          <label>
-            <span>标签名</span>
-            <input type="text" placeholder="标签名"
-                   defaultValue={tag.name}
-            />
-          </label>
-        </div>
+        <InputWrapper>
+         <Input label="标签名" type="text" placeholder="标签名"/>
+        </InputWrapper>
         <Button>
           <Icon name="deleteTag"/>
           删除标签

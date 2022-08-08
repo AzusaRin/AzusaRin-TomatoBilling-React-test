@@ -3,26 +3,8 @@ import React, {ChangeEventHandler} from 'react';
 import {Input} from '../../components/FormItem';
 
 const Wrapper = styled.section`
-  label {
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    padding-left: 16px;
-    background-color: white;
-
-    .noteName {
-      padding-right: 16px;
-    }
-
-    input {
-      height: 3.5rem;
-      flex-grow: 1;
-      background-color: transparent;
-      border: none;
-      padding-right: 16px;
-      font-size: 14px;
-    }
-  }
+  padding: 8px 0;
+  background-color: white;
 `;
 type Props = {
   selected: string
@@ -35,7 +17,7 @@ const NoteSection: React.FunctionComponent<Props> = (props) => {
   };
   return (
     <Wrapper>
-      <Input label="备注" type="text" value={note} onChange={onChange}/>
+      <Input label="备注" type="text" placeholder="写点备注吧~" value={note} onChange={onChange}/>
     </Wrapper>
   );
 };
