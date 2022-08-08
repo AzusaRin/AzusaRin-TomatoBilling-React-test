@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import React, {useRef} from 'react';
+import React, {ChangeEventHandler} from 'react';
+import {Input} from '../../components/FormItem';
 
 const Wrapper = styled.section`
   label {
@@ -29,22 +30,12 @@ type Props = {
 }
 const NoteSection: React.FunctionComponent<Props> = (props) => {
   const note = props.selected;
-  const inputEl = useRef<HTMLInputElement>(null);
-  const onBlur = () => {
-    if (inputEl.current !== null) {
-      props.onChange(inputEl.current.value);
-    }
+  const onChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+    props.onChange(event.target.value);
   };
   return (
     <Wrapper>
-      <label className="notes">
-        <span className="noteName">备注</span>
-        <input type="text" placeholder="写点备注吧~"
-               defaultValue={note}
-               ref={inputEl}
-               onBlur={onBlur}
-        />
-      </label>
+      <Input label="备注" type="text" value={note} onChange={onChange}/>
     </Wrapper>
   );
 };

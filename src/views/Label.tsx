@@ -5,6 +5,7 @@ import {useTags} from '../useTags';
 import styled from 'styled-components';
 import Icon from '../components/Icon';
 import {Link} from 'react-router-dom';
+import {Button} from '../components/Button';
 
 
 const TagList = styled.ol`
@@ -24,28 +25,7 @@ const TagList = styled.ol`
     }
   }
 `;
-const Button = styled.button`
-  margin-top: 20px;
-  background-color: white;
-  padding: 8px 20px 8px 8px;
-  color: #333333;
-  border-radius: 8px;
-  border: none;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
-  font-size: 18px;
-  display: flex;
 
-  > svg {
-    height: 24px;
-    width: 24px;
-    padding: 2px;
-    vertical-align: -0.15em;
-    fill: currentColor;
-    overflow: hidden;
-    color: #333333;
-    margin-right: 16px;
-  }
-`;
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -53,14 +33,14 @@ const ButtonWrapper = styled.div`
 `;
 
 function Label() {
-  const {tags, setTags} = useTags();
+  const {tags} = useTags();
   return (
     <LabelWrapper>
       <Main>
         <TagList>
           {tags.map(tag =>
             <li key={tag.id}>
-              <Link to={'/label/' + tag}>
+              <Link to={'/label/' + tag.id}>
                 <span>{tag.name}</span>
                 <Icon name="right"/>
               </Link>

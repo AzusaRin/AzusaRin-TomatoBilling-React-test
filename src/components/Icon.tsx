@@ -7,13 +7,13 @@ try {
 }
 
 type SvgName = {
-  name:string
+  name?:string
 }
 
 const Icon = (props:SvgName) => {
 return(
   <svg className="icon">
-    <use xlinkHref={'#'+props.name}  />
+    {props.name &&<use xlinkHref={'#'+props.name}  />}
   </svg>
 )
 };

@@ -19,7 +19,7 @@ function App() {
           <Route path="billing" element={<Billing/>}/>
           <Route path="myChart" element={<MyChart/>}/>
           <Route path="statistics" element={<Statistics/>}/>
-          <Route path="/label/:tag" element={<EditLabel/>}/>
+          <Route path="/label/:id" element={<EditLabel/>}/>
           <Route path="label" element={<Label/>}/>
         </Routes>
   );

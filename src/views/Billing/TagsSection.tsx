@@ -3,6 +3,7 @@ import React from 'react';
 import Icon from 'components/Icon';
 import {useTags} from '../../useTags';
 import {createId} from '../../lib/createId';
+import {Link} from 'react-router-dom';
 
 
 const Wrapper = styled.section`
@@ -150,10 +151,12 @@ const TagsSection: React.FunctionComponent<Props> = (props) => {
           新增标签
         </button>
         <button>
+          <Link to={'/label'}>
           <svg className="icon">
             <Icon name="labels"/>
           </svg>
           管理标签
+          </Link>
         </button>
       </div>
       <ul>
