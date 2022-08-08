@@ -17,18 +17,18 @@ const Header = styled.div`
   padding: 14px;
 `;
 const InputWrapper = styled.div`
-background: white;
+  background: white;
   padding: 0 16px;
   margin-top: 16px;
-`
+`;
 
 type Params = {
   id: string
 }
 const EditLabel: React.FunctionComponent = () => {
-  const {tags} = useTags();
-  let {id} = useParams<Params>();
-  const tag = tags.filter(t => t.id === parseInt(id!))[0];
+  const {tags, updateTag} = useTags();
+  let {id:idString} = useParams<Params>();
+  const tag = tags.filter(t => t.id === parseInt(idString!))[0];
   return (
     <LabelWrapper>
       <Main>
@@ -38,7 +38,8 @@ const EditLabel: React.FunctionComponent = () => {
           <Icon/>
         </Header>
         <InputWrapper>
-         <Input label="标签名" type="text" placeholder="标签名"/>
+          <Input label="标签名" type="text" placeholder="标签名" value={tag.name}
+                 onChange={(event) => updateTag(tag.id, {name: event.target.value})}/>
         </InputWrapper>
         <Button>
           <Icon name="deleteTag"/>
