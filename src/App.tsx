@@ -5,6 +5,7 @@ import MyChart from 'views/MyChart';
 import Statistics from 'views/Statistics';
 import NotFound from 'views/NotFound';
 import  Label  from 'views/Label';
+import {EditLabel} from './views/EditLabel';
 
 
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="billing" element={<Billing/>}/>
           <Route path="myChart" element={<MyChart/>}/>
           <Route path="statistics" element={<Statistics/>}/>
+          <Route path="/label/:tag" element={<EditLabel/>}/>
           <Route path="label" element={<Label/>}/>
         </Routes>
   );
