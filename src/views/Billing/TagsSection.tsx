@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import React from 'react';
 import Icon from 'components/Icon';
 import {useTags} from '../../useTags';
+import {createId} from '../../lib/createId';
 
 
 const Wrapper = styled.section`
@@ -108,8 +109,8 @@ const Wrapper = styled.section`
   }
 `;
 type Props = {
-  selected: string[]
-  onChange: (selected: string[]) => void
+  selected: number[]
+  onChange: (selected:number[]) => void
 }
 const TagsSection: React.FunctionComponent<Props> = (props) => {
   const selectedTag = props.selected;
@@ -123,21 +124,21 @@ const TagsSection: React.FunctionComponent<Props> = (props) => {
       window.alert('标签名不可超过10字符');
       return;
     } else {
-      setTags([...tags, newTagName]);
+      setTags([...tags, {id:createId(),name:newTagName}]);
     }
   };
-  const onToggleTag = (tag: string) => {
-    if (selectedTag.includes(tag)) {
-      props.onChange(selectedTag.filter(t => t !== tag));
+  const onToggleTag = (tagId: number) => {
+    if (selectedTag.includes(tagId)) {
+      props.onChange(selectedTag.filter(t => t !== tagId));
     } else if (selectedTag.length >= 1) {
       selectedTag.splice(0, 1);
-      props.onChange([...selectedTag, tag]);
+      props.onChange([...selectedTag, tagId]);
     } else {
-      props.onChange([...selectedTag, tag]);
+      props.onChange([...selectedTag, tagId]);
     }
   };
-  const className = (tag: string) => {
-    return selectedTag.includes(tag) ? 'selected' : '';
+  const getClass = (tagId:number) => {
+    return selectedTag.includes(tagId) ? 'selected' : '';
   };
   return (
     <Wrapper>
@@ -157,10 +158,10 @@ const TagsSection: React.FunctionComponent<Props> = (props) => {
       </div>
       <ul>
         {tags.map(tag =>
-          <li key={tag}
-              onClick={() => {onToggleTag(tag);}}
-              className={className(tag)}
-          >{tag}
+          <li key={tag.id}
+              onClick={() => {onToggleTag(tag.id);}}
+              className={getClass(tag.id)}
+          >{tag.name}
           </li>
         )}
       </ul>

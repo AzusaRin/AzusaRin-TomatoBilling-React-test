@@ -18,7 +18,7 @@ type Type = '-' | '+'
 function Billing() {
   const [value, setValue] = useState({
     type: '-' as Type,
-    tag: [] as string[],
+    tagIds: [] as number[],
     note: '',
     amount: 0
   });
@@ -35,8 +35,8 @@ function Billing() {
         onChange={type => Change({type})}
       />
       <TagsSection
-        selected={value.tag}
-        onChange={tag => Change({tag})}
+        selected={value.tagIds}
+        onChange={tagIds => Change({tagIds})}
       />
       <NoteSection
         selected={value.note}
