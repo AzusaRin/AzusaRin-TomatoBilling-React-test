@@ -36,12 +36,15 @@ const EditLabel: React.FunctionComponent = () => {
   let {id: idString} = useParams<Params>();
   const tag = tags.filter(t => t.id === parseInt(idString!))[0];
 
+  const onclickBack = () => {
+    window.history.back();
+  };
 
   return (
     <LabelWrapper>
       <Main>
         <Header>
-          <Icon name="left"/>
+          <Icon name="left" onClick={onclickBack}/>
           <span>编辑标签</span>
           <Icon/>
         </Header>
@@ -53,7 +56,7 @@ const EditLabel: React.FunctionComponent = () => {
           <ButtonWrapper>
             <Button onClick={() => deleteTag(tag.id)}>
               <Icon name="deleteTag"/>
-             <span>删除标签</span>
+              <span>删除标签</span>
             </Button>
           </ButtonWrapper>
         </div> : <div>标签不存在</div>}
