@@ -24,8 +24,10 @@ const InputWrapper = styled.div`
 `;
 const ButtonWrapper = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  padding: 0 16px;
+  margin-top: 16px;
 `;
 
 type Params = {
@@ -35,7 +37,10 @@ const EditLabel: React.FunctionComponent = () => {
   const {tags, updateTag, deleteTag} = useTags();
   let {id: idString} = useParams<Params>();
   const tag = tags.filter(t => t.id === parseInt(idString!))[0];
-
+  let updateName = ''
+  const newTag  = (newName:string):string=>{
+   return updateName =  newName
+  }
   const onclickBack = () => {
     window.history.back();
   };
@@ -50,13 +55,18 @@ const EditLabel: React.FunctionComponent = () => {
         </Header>
         {tag ? <div>
           <InputWrapper>
-            <Input label="标签名" type="text" placeholder="标签名" value={tag.name}
-                   onChange={(event) => updateTag(tag.id, {name: event.target.value})}/>
+            <Input label="标签名" type="text" placeholder="标签名" defaultValue={tag.name}
+                   onChange={(event) => newTag(event.target.value)}
+            />
           </InputWrapper>
           <ButtonWrapper>
             <Button onClick={() => deleteTag(tag.id)}>
               <Icon name="deleteTag"/>
               <span>删除标签</span>
+            </Button>
+            <Button onClick={() => updateTag(tag.id, {name:updateName})}>
+              <Icon name="confirm"/>
+              <span>确认修改</span>
             </Button>
           </ButtonWrapper>
         </div> : <div>标签不存在</div>}

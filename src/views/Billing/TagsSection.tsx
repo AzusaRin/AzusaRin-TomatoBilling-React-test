@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import React from 'react';
 import Icon from 'components/Icon';
 import {useTags} from '../../useTags';
-import {createId} from '../../lib/createId';
 import {Link} from 'react-router-dom';
+import {iconSetting} from '../../iconSetting';
 
 
 const Wrapper = styled.section`
@@ -40,7 +40,7 @@ const Wrapper = styled.section`
         padding: 0 16px;
         margin: 8px;
 
-        > .tagIcon {
+        > .icon {
           height: 60px;
           width: 60px;
           fill: currentColor;
@@ -51,29 +51,9 @@ const Wrapper = styled.section`
       }
 
       &.selected {
-        color: red;
 
         > .svgWrapper {
-          background-color: #71C9CE;
-          @-webkit-keyframes shake {
-            10% {
-              transform: rotate(15deg);
-            }
-            20% {
-              transform: rotate(-10deg);
-            }
-            30% {
-              transform: rotate(5deg);
-            }
-            40% {
-              transform: rotate(-5deg);
-            }
-            50%,
-            100% {
-              transform: rotate(0deg);
-            }
-          }
-          -webkit-animation: shake 1s 0.15s linear infinite;
+          background-color: rgb(253, 167, 168);
         }
       }
     }
@@ -111,23 +91,12 @@ const Wrapper = styled.section`
 `;
 type Props = {
   selected: number[]
-  onChange: (selected:number[]) => void
+  onChange: (selected: number[]) => void
 }
 const TagsSection: React.FunctionComponent<Props> = (props) => {
   const selectedTag = props.selected;
-  const {tags, setTags} = useTags();
-  const onAddTag = () => {
-    const newTagName = window.prompt('请输入标签名称');
-    if (newTagName === null) {
-      window.alert('标签名不能为空');
-      return;
-    } else if (newTagName.length >= 10) {
-      window.alert('标签名不可超过10字符');
-      return;
-    } else {
-      setTags([...tags, {id:createId(),name:newTagName}]);
-    }
-  };
+  const {tags, addTag} = useTags();
+
   const onToggleTag = (tagId: number) => {
     if (selectedTag.includes(tagId)) {
       props.onChange(selectedTag.filter(t => t !== tagId));
@@ -138,13 +107,17 @@ const TagsSection: React.FunctionComponent<Props> = (props) => {
       props.onChange([...selectedTag, tagId]);
     }
   };
-  const getClass = (tagId:number) => {
+
+  const tagNameSetting = (tag: { id: number, name: string }):string => {
+   return  iconSetting(tag);
+  };
+  const getClass = (tagId: number) => {
     return selectedTag.includes(tagId) ? 'selected' : '';
   };
   return (
     <Wrapper>
       <div className="new">
-        <button onClick={onAddTag}>
+        <button onClick={addTag}>
           <svg className="icon">
             <Icon name="createTag"/>
           </svg>
@@ -152,10 +125,10 @@ const TagsSection: React.FunctionComponent<Props> = (props) => {
         </button>
         <button>
           <Link to={'/label'}>
-          <svg className="icon">
-            <Icon name="labels"/>
-          </svg>
-          管理标签
+            <svg className="icon">
+              <Icon name="labels"/>
+            </svg>
+            管理标签
           </Link>
         </button>
       </div>
@@ -164,7 +137,11 @@ const TagsSection: React.FunctionComponent<Props> = (props) => {
           <li key={tag.id}
               onClick={() => {onToggleTag(tag.id);}}
               className={getClass(tag.id)}
-          >{tag.name}
+          >
+            <div className="svgWrapper">
+              <Icon name={tagNameSetting(tag)}/>
+            </div>
+            {tag.name}
           </li>
         )}
       </ul>
