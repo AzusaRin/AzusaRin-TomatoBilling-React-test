@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {LabelWrapper, Main} from '../components/LayoutStyle';
 import Nav from '../components/Nav';
-import {useTags} from '../useTags';
+import {useTags} from '../hooks/useTags';
 import styled from 'styled-components';
 import Icon from '../components/Icon';
 import {Link} from 'react-router-dom';

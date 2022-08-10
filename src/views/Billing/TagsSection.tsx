@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import React from 'react';
 import Icon from 'components/Icon';
-import {useTags} from '../../useTags';
+import {useTags} from '../../hooks/useTags';
 import {Link} from 'react-router-dom';
 import {iconSetting} from '../../iconSetting';
 

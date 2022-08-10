@@ -5,6 +5,7 @@ import {inputToOutput} from './NumberPadSection/inputToOutput';
 type Props = {
   selected: number
   onChange: (selected: number) => void
+  onOk?: () => void
 }
 const NumberPadSection: React.FunctionComponent<Props> = (props) => {
   const [output, setOutput] = useState(props.selected.toString());
@@ -25,9 +26,9 @@ const NumberPadSection: React.FunctionComponent<Props> = (props) => {
     const innerText = (event.target as HTMLButtonElement).textContent;
     if (innerText === null) {return;}
     if (innerText === 'OK') {
-      //TODO
-      console.log('记录');
-      return;
+      if (props.onOk) {
+        props.onOk();
+      }
     }
     if ('0123456789.'.split('').concat(['删除', '清空']).includes(innerText)) {
       _setOutput(inputToOutput(innerText, output));
