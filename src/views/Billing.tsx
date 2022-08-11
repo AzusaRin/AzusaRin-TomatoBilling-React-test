@@ -7,6 +7,10 @@ import {NoteSection} from './Billing/NoteSection';
 import {NumberPadSection} from './Billing/NumberPadSection';
 import {TypeSection} from './Billing/TypeSection';
 import {useRecords} from '../hooks/useRecords';
+import dayjs from 'dayjs';
+import moment from 'moment';
+import type {DatePickerProps} from 'antd';
+import {DatePicker, Space} from 'antd';
 
 
 const MyLayout = styled(layout)`
@@ -15,19 +19,29 @@ const MyLayout = styled(layout)`
 `;
 
 type Type = '-' | '+'
-const defaultFormData = {
-  type: '-' as Type,
-  tagIds: [] as number[],
-  note: '',
-  amount: 0
-};
+
 
 function Billing() {
+  const [date, setDate] = useState(dayjs(new Date()).format('YYYY-MM-DD'));
+  const onChange: DatePickerProps['onChange'] = (date) => {
+    setDate(moment(date).format('YYYY-MM-DD'));
+  };
+
+  const defaultFormData = {
+    type: '-' as Type,
+    tagIds: [] as number[],
+    note: '',
+    amount: 0,
+    createdAt: date
+  };
+
+
   const [value, setValue] = useState(defaultFormData);
   const Change = (obj: Partial<typeof value>) => {
     setValue({
       ...value,
-      ...obj
+      ...obj,
+      createdAt: date
     });
   };
   const {addRecord} = useRecords();
@@ -38,12 +52,16 @@ function Billing() {
     }
 
   };
+
   return (
     <MyLayout>
       <TypeSection
         selected={value.type}
         onChange={type => Change({type})}
       />
+      <Space direction="vertical">
+        <DatePicker onChange={onChange}/>
+      </Space>
       <TagsSection
         selected={value.tagIds}
         onChange={tagIds => Change({tagIds})}

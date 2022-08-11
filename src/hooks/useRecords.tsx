@@ -2,15 +2,14 @@ import {useEffect, useState} from 'react';
 import {useUpdate} from './useUpdate';
 
 
-type NewRecordItem = {
+export  type RecordItem = {
   tagIds: number[]
   note: string
   type: '+' | '-'
   amount: number
-}
-export type RecordItem = NewRecordItem & {
   createdAt: string
 }
+
 export const useRecords = () => {
   const [records, setRecords] = useState<RecordItem[]>([]);
 
@@ -21,7 +20,7 @@ export const useRecords = () => {
     window.localStorage.setItem('records', JSON.stringify(records));
   }, records);
 
-  const addRecord = (newRecord: NewRecordItem) => {
+  const addRecord = (newRecord: RecordItem) => {
     if (newRecord.amount <= 0) {
       alert('没钱不记账哦');
       return false;
@@ -30,8 +29,7 @@ export const useRecords = () => {
       alert('请选择标签');
       return false;
     }
-    const record = {...newRecord, createdAt: (new Date().toISOString())};
-    setRecords([...records, record]);
+    setRecords([...records, newRecord]);
     return true;
   };
 

@@ -1,6 +1,4 @@
 import Layout from '../components/Layout';
-import * as React from 'react';
-import {useState} from 'react';
 import {RecordItem, useRecords} from '../hooks/useRecords';
 import {useTags} from '../hooks/useTags';
 import Icon from '../components/Icon';
@@ -8,8 +6,13 @@ import {iconSetting} from '../iconSetting';
 import styled from 'styled-components';
 import {TypeSection} from './Billing/TypeSection';
 import dayjs from 'dayjs';
-import {MyTimePicker} from '../components/TimePicker';
-import 'antd/dist/antd.min.css';
+import 'antd/dist/antd.min.css'
+import type { DatePickerProps } from 'antd';
+import { DatePicker, Space } from 'antd';
+import React, {useState} from 'react';
+import moment from 'moment';
+
+
 
 
 const Item = styled.div`
@@ -40,19 +43,26 @@ const Item = styled.div`
   }
 `;
 const Header = styled.h3`
-font-size: 18px;
+  font-size: 18px;
   line-height: 20px;
-  padding:8px 16px;
-`
+  padding: 8px 16px;
+`;
+
 function Statistics() {
   const [type, setType] = useState<'-' | '+'>('-');
+  const [month,setMonth] = useState(dayjs(new Date()).format('YYYY年M月'))
+  const onChange: DatePickerProps['onChange'] = (date) => {
+    setMonth(moment(date).format('YYYY年M月'));
+  };
   const {records} = useRecords();
   const {getName} = useTags();
   const tagNameSetting = (tag: { id: number, name: string }): string => {
     return iconSetting(tag);
   };
   const hash: { [title: string]: RecordItem[] } = {};
-  const selectedRecords = records.filter(r => r.type === type);
+  const selectedRecords = records.filter(r => r.type === type
+    && dayjs(r.createdAt, 'month').format('YYYY年M月') === month
+  );
 
   selectedRecords.map(r => {
       const title = dayjs(r.createdAt).format('YYYY年M月D日');
@@ -78,10 +88,11 @@ function Statistics() {
         selected={type}
         onChange={selected => setType(selected)}
       />
-      <div>
-        <MyTimePicker/>
-      </div>
-      {list.map(([date,records],index) => {
+      <Space direction="vertical">
+        <DatePicker onChange={onChange} picker="month"/>
+      </Space>
+      <span>{month}</span>
+      {list.map(([date, records], index) => {
         return <div key={index}>
           <Header> {date}</Header>
           <div>

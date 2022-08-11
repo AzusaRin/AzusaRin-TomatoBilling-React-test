@@ -2880,6 +2880,11 @@
   "resolved" "https://registry.npmjs.org/ansi-styles/-/ansi-styles-5.2.0.tgz"
   "version" "5.2.0"
 
+"antd-dayjs-webpack-plugin@^1.0.6":
+  "integrity" "sha512-UlK3BfA0iE2c5+Zz/Bd2iPAkT6cICtrKG4/swSik5MZweBHtgmu1aUQCHvICdiv39EAShdZy/edfP6mlkS/xXg=="
+  "resolved" "https://registry.npmjs.org/antd-dayjs-webpack-plugin/-/antd-dayjs-webpack-plugin-1.0.6.tgz"
+  "version" "1.0.6"
+
 "antd@^4.22.4":
   "integrity" "sha512-u7l68PhSJMxyZmCNw+jwaeurSAaE+bU+lB0SPRHLfOFJR6xRudntvRoQdiEFOD5FZ3eeqz4lYQ3RZZRIarmceg=="
   "resolved" "https://registry.npmjs.org/antd/-/antd-4.22.4.tgz"
@@ -4140,7 +4145,7 @@
   "resolved" "https://registry.npmjs.org/date-fns/-/date-fns-2.29.1.tgz"
   "version" "2.29.1"
 
-"dayjs@^1.11.4", "dayjs@1.x":
+"dayjs@*", "dayjs@^1.11.4", "dayjs@1.x":
   "integrity" "sha512-Zj/lPM5hOvQ1Bf7uAvewDaUcsJoI6JmNqmHhHl3nyumwe0XHwt8sWdOVAPACJzCebL8gQCi+K49w7iKWnGwX9g=="
   "resolved" "https://registry.npmjs.org/dayjs/-/dayjs-1.11.4.tgz"
   "version" "1.11.4"
@@ -7499,7 +7504,7 @@
   dependencies:
     "minimist" "^1.2.5"
 
-"moment@^2.24.0", "moment@^2.29.2":
+"moment@^2.24.0", "moment@^2.29.2", "moment@^2.29.4":
   "integrity" "sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w=="
   "resolved" "https://registry.npmjs.org/moment/-/moment-2.29.4.tgz"
   "version" "2.29.4"
