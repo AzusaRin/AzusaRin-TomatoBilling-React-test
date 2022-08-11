@@ -48,6 +48,17 @@ const Header = styled.h3`
   padding: 8px 16px;
 `;
 
+const Wrapper = styled.div`
+display: flex;
+  justify-content: space-between;
+  padding-right: 64px;
+  font-size: 20px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+`
+const ListWrapper = styled.div`
+overflow: auto;
+`
+
 function Statistics() {
   const [type, setType] = useState<'-' | '+'>('-');
   const [month,setMonth] = useState(dayjs(new Date()).format('YYYY年M月'))
@@ -88,10 +99,13 @@ function Statistics() {
         selected={type}
         onChange={selected => setType(selected)}
       />
+      <Wrapper>
       <Space direction="vertical">
         <DatePicker onChange={onChange} picker="month"/>
       </Space>
       <span>{month}</span>
+      </Wrapper>
+      <ListWrapper>
       {list.map(([date, records], index) => {
         return <div key={index}>
           <Header> {date}</Header>
@@ -114,6 +128,7 @@ function Statistics() {
           </div>
         </div>;
       })}
+      </ListWrapper>
     </Layout>
   );
 }
