@@ -9,7 +9,7 @@ import styled from 'styled-components';
 import {TypeSection} from './Billing/TypeSection';
 import dayjs from 'dayjs';
 import {MyTimePicker} from '../components/TimePicker';
-import 'antd/dist/antd.min.css;
+import 'antd/dist/antd.min.css';
 
 
 const Item = styled.div`
