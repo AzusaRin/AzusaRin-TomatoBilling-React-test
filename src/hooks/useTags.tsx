@@ -18,7 +18,7 @@ const useTags = () => {
 
   useUpdate(() => {
     window.localStorage.setItem('tags', JSON.stringify(tags));
-  }, [tags]);
+  }, tags);
 
   const updateTag = (id: number, obj: { name: string }) => {
     if (window.confirm('确认要修改标签名吗')) {
@@ -64,7 +64,12 @@ const useTags = () => {
     }
   };
 
-  return {tags, setTags, updateTag, deleteTag, addTag};
+  const getName = (id: number) => {
+    const tag = tags.filter(t => t.id === id)[0];
+    return tag ? tag.name : '';
+  };
+
+  return {tags, setTags, updateTag, deleteTag, addTag,getName};
 };
 
 

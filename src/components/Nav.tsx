@@ -10,12 +10,13 @@ const NavWrapper = styled.nav`
   bottom: 0;
   width: 100vw;
   max-width: 470px;
+  height: 60px;
   
   > ul {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 60px;
+  
     
     > li {
       text-align: center;
